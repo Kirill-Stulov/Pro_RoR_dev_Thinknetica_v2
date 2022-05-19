@@ -39,7 +39,7 @@ class Interface
   end
 
   # меню
-  def call
+  def call 
     loop do
       puts "Choose action: \n"
       puts "0 -> quit"
