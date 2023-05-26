@@ -1,0 +1,4 @@
+# .rubocop.yml
+# Set the line ending character to LF
+Layout/EndOfLine:
+  EnforcedStyle: lf
