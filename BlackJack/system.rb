@@ -1,5 +1,5 @@
-class Game
-
+# decided to not use this class for now
+class Game  
   # attr_accessor :bank
 
   # def initialize
