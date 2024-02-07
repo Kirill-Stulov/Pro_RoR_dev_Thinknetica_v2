@@ -127,13 +127,8 @@ module SharedVars
     #  used in winner_no_winner method
     def return_cash_to_players
       @@all_players.each(&:backout_cash)
+      # вот так было бы проще и меньше кода, но решил оставить &:backout_cash вариант для наглядности
       # @@all_players.each { |player| player.cash += 10 }
-    end
-
-    # method returns players bets from bank to players, if no winner
-    #  used in winner_no_winner method
-    def backout_cash
-      self.cash += 10
     end
 
     # метод для автоматических ставок в начале игры
@@ -186,6 +181,16 @@ module SharedVars
       counter = self.class.game_counter
       # self.class.game_counter.nil? ? self.class.game_counter = 1 : self.class.game_counter += 1
       counter.nil? ? self.class.game_counter = 1 : self.class.game_counter += 1
+    end
+
+    # method returns players bets from bank to players, if no winner
+    #  used in winner_no_winner method
+    # Why this methos is here:
+    # return_cash_to_players method calls backout_cash on each element
+    # of @@all_players using the &:backout_cash symbol-to-proc shorthand,
+    # which only works if backout_cash is an instance method
+    def backout_cash
+      self.cash += 10
     end
   end
 end
